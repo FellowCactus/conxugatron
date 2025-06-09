@@ -27,7 +27,7 @@ function ConxConfigVerbos({config, setConfig}) {
     }
 
     function handleNVerbosChange(e) {
-        setNVerbos(e.target.value);
+        setNVerbos(Number(e.target.value));
     }
 
     function handleVerbosAleatorios(e) {
