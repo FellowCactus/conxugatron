@@ -8,11 +8,11 @@ function AdestEstPregunta({tempo, verbo, seguinte, acertos, resTotales}) {
     const inputRefs = useRef([]);
 
     useEffect(() => {
-        fetch("/milverbos.csv")
+        fetch(`${import.meta.env.BASE_URL}milverbos.csv`)
             .then(response => response.text())
             .then(responseText => setMilverbos(responseText.trim().split("\r\n")));
         
-        fetch(`/conxugacions/${tempo}.csv`)
+        fetch(`${import.meta.env.BASE_URL}conxugacions/${tempo}.csv`)
             .then(response => response.text())
             .then(responseText => setConx(responseText.trim().split("\r\n")));
     }, [tempo]);

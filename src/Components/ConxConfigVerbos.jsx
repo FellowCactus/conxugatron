@@ -7,7 +7,7 @@ function ConxConfigVerbos({config, setConfig}) {
     const [nVerbos, setNVerbos] = useState(3);
 
     useEffect(() => {
-        fetch("/milverbos.csv")
+        fetch(`${import.meta.env.BASE_URL}milverbos.csv`)
             .then(response => response.text())
             .then(responseText => setMilverbos(responseText.trim().split("\r\n")));
     },[]);
