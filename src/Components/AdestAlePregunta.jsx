@@ -9,13 +9,21 @@ function AdestAlePregunta({tempo, verbo, pron, seguinte, acertos}) {
     const seguinteRef = useRef(null);
 
     useEffect(() => {
-        fetch(import.meta.env.BASE_URL + "/milverbos.csv")
+        fetch(`${import.meta.env.BASE_URL}milverbos.csv`)
             .then(response => response.text())
-            .then(responseText => setMilverbos(responseText.trim().split("\r\n")));
+            .then(responseText => {
+                const normalizedText = responseText.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+                const lines = normalizedText.trim().split('\n');
+                setMilverbos(lines);
+            });
         
-        fetch(import.meta.env.BASE_URL + `/conxugacions/${tempo}.csv`)
+        fetch(`${import.meta.env.BASE_URL}conxugacions/${tempo}.csv`)
             .then(response => response.text())
-            .then(responseText => setConx(responseText.trim().split("\r\n")));
+            .then(responseText => {
+                const normalizedText = responseText.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+                const lines = normalizedText.trim().split('\n');
+                setConx(lines);
+            });
     }, [tempo]);
 
     useEffect(() => {

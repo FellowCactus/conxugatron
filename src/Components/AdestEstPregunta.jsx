@@ -10,11 +10,19 @@ function AdestEstPregunta({tempo, verbo, seguinte, acertos, resTotales}) {
     useEffect(() => {
         fetch(`${import.meta.env.BASE_URL}milverbos.csv`)
             .then(response => response.text())
-            .then(responseText => setMilverbos(responseText.trim().split("\r\n")));
+            .then(responseText => {
+                const normalizedText = responseText.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+                const lines = normalizedText.trim().split('\n');
+                setMilverbos(lines);
+            });
         
         fetch(`${import.meta.env.BASE_URL}conxugacions/${tempo}.csv`)
             .then(response => response.text())
-            .then(responseText => setConx(responseText.trim().split("\r\n")));
+            .then(responseText => {
+                const normalizedText = responseText.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+                const lines = normalizedText.trim().split('\n');
+                setConx(lines);
+            });
     }, [tempo]);
 
     if (conx.length === 0 || milVerbos.length === 0) {

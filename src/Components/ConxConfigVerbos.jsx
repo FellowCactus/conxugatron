@@ -9,7 +9,11 @@ function ConxConfigVerbos({config, setConfig}) {
     useEffect(() => {
         fetch(`${import.meta.env.BASE_URL}milverbos.csv`)
             .then(response => response.text())
-            .then(responseText => setMilverbos(responseText.trim().split("\r\n")));
+            .then(responseText => {
+                const normalizedText = responseText.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+                const lines = normalizedText.trim().split('\n');
+                setMilverbos(lines);
+            });
     },[]);
     
 
