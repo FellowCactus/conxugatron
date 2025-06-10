@@ -15,7 +15,7 @@ function ConxConfig() {
             <ConxConfigVerbos config={papaConfig} setConfig={setPapaConfig}/>
             <ConxConfigTempos config={papaConfig} setConfig={setPapaConfig}/>
             <ConxConfigModos config={papaConfig} setConfig={setPapaConfig}/>
-            {papaConfig.tempos.length > 0 && papaConfig.verbos.length > 0 ? <Link to={`/adest${papaConfig.modo}`} state={papaConfig}><button>Empezar</button></Link> : <p id="falta-datos">Introduce ao menos un verbo e un tempo.</p>}
+            {papaConfig.tempos.length > 0 && papaConfig.verbos.length > 0 ? <Link to={`/adest${papaConfig.modo}`} state={papaConfig}><button>Empezar</button></Link> : <p id="falta-datos">Introduce canto menos un verbo e un tempo.</p>}
         </div>
     );
 }
